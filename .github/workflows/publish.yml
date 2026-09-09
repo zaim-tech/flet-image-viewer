@@ -1,4 +1,4 @@
-name: Publish flet-webview-all to PyPI
+name: Publish flet-image-viewer to PyPI
 
 on:
   release:
@@ -44,7 +44,7 @@ jobs:
       id-token: write
     environment:
       name: pypi
-      url: https://pypi.org/project/flet-webview-all/
+      url: https://pypi.org/project/flet-image-viewer/
 
     steps:
       - name: Download release distributions
