@@ -42,6 +42,6 @@ gallery = FletMultiViewer(
 
 ## Run the example application
 
-The complete sample app is in
-[`examples/flet_image_viewer_example/`](../../examples/flet_image_viewer_example/).
+The complete sample app is in `examples/flet_image_viewer_example/` in the
+repository.
 See [Building and running](building.md) for the client build command.
