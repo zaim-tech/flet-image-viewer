@@ -1,7 +1,7 @@
 [project]
 name = "flet-image-viewer"
 version = "0.1.0"
-description = "FletImageViewer control for Flet"
+description = "A zoomable image viewer and swipeable gallery control for Flet"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -19,10 +19,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://mydomain.dev"
-Documentation = "https://github.com/MyGithubAccount/flet-image-viewer"
-Repository = "https://github.com/MyGithubAccount/flet-image-viewer"
-Issues = "https://github.com/MyGithubAccount/flet-image-viewer/issues"
+Homepage = "https://github.com/zaim-tech/flet-image-viewer"
+Documentation = "https://github.com/zaim-tech/flet-image-viewer"
+Repository = "https://github.com/zaim-tech/flet-image-viewer"
+Issues = "https://github.com/zaim-tech/flet-image-viewer/issues"
 
 [tool.setuptools.package-data]
 "flutter.flet_image_viewer" = ["**/*"]

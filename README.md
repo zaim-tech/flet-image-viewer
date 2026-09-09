@@ -1,164 +1,200 @@
 # flet-image-viewer
 
-flet-image-viewer [Flet](https://flet.dev) extension.
+`flet-image-viewer` is a Flet extension for displaying zoomable images and
+swipeable image galleries in Flet applications.
 
-<!--- If your extension wraps a Flutter package, credit it here, ex:
-It is based on the [xyz](https://pub.dev/packages/xyz) Flutter package. -->
+[![PyPI](https://img.shields.io/pypi/v/flet-image-viewer)](https://pypi.org/project/flet-image-viewer/)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://zaim-tech.github.io/flet-image-viewer/)
+[![Repository](https://img.shields.io/badge/source-GitHub-181717)](https://github.com/zaim-tech/flet-image-viewer)
 
-## Platform Support
+The package provides `FletImageViewer` for a single image and `FletMultiViewer`
+for a swipeable gallery. Both controls support pinch-to-zoom, configurable
+image fitting, overlays, and long-press or double-tap events.
 
-<!--- Update the table accordingly for your extension, using ✅ and ❌. -->
+## Installation
 
-| Platform  | iOS | Android | Web | Windows | macOS | Linux |
-|-----------|-----|---------|-----|---------|-------|-------|
-| Supported | ✅   | ✅       | ❌   | ✅       | ✅     | ✅     |
+Install the published package from PyPI:
+
+```bash
+pip install flet-image-viewer
+```
+
+Or add it to your application's `pyproject.toml`:
+
+```toml
+[project]
+dependencies = [
+    "flet>=0.86.5",
+    "flet-image-viewer",
+]
+```
+
+To install the latest version directly from GitHub instead, use:
+
+```toml
+[project]
+dependencies = [
+    "flet>=0.86.5",
+    "flet-image-viewer @ git+https://github.com/zaim-tech/flet-image-viewer.git",
+]
+```
 
 ## Usage
-
-### Installation
-
-Add `flet-image-viewer` dependency to the `pyproject.toml` of your Flet project:
-
-* **From Git**
-
-```toml
-dependencies = [
-  "flet-image-viewer @ git+https://github.com/zaim-tech/flet-image-viewer",
-  "flet>=0.86.5",
-]
-```
-
-<!--- Remove below list item, if your extension isn't yet available on PyPI. -->
-
-* **From PyPI**
-
-```toml
-dependencies = [
-  "flet-image-viewer",
-  "flet>=0.86.5",
-]
-```
-
-### Tutorial
-
-Use `FletImageViewer` for one image and `FletMultiViewer` for a swipeable gallery.
-The `src` value can be an image URL or a local file path.
 
 ```python
 import flet as ft
 
-from flet_image_viewer import FletImageViewer, FletMultiViewer
+from flet_image_viewer import FletImageViewer
 
 
 def main(page: ft.Page):
-  page.title = "Image viewer tutorial"
-  page.padding = 20
-
-  single_image = FletImageViewer(
-    src="https://picsum.photos/900/600",
-    show_close_button=True,
-    BoxFit=ft.BoxFit.CONTAIN,
-    min_scale=1.0,
-    max_scale=4.0,
-    overlay=ft.Container(
-      content=ft.Text("Photo preview"),
-      bgcolor=ft.Colors.with_opacity(0.75, ft.Colors.BLACK),
-      padding=10,
-    ),
-    on_double_tap=lambda event: print("Image double-tapped"),
-  )
-
-  gallery = FletMultiViewer(
-    src=[
-      "https://picsum.photos/id/10/900/600",
-      "https://picsum.photos/id/20/900/600",
-      "https://picsum.photos/id/30/900/600",
-    ],
-    viewer_id="tutorial-gallery",
-    index=0,
-    BoxFit=ft.BoxFit.CONTAIN,
-    on_long_press=lambda event: print("Gallery image long-pressed"),
-  )
-
-  page.add(
-    ft.Text("Single image", size=20, weight=ft.FontWeight.BOLD),
-    ft.Container(content=single_image, height=300),
-    ft.Text("Image gallery", size=20, weight=ft.FontWeight.BOLD),
-    ft.Container(content=gallery, height=300),
-  )
+    page.title = "Image viewer example"
+    page.add(
+        FletImageViewer(
+            src="https://picsum.photos/900/600",
+            show_close_button=True,
+            BoxFit=ft.BoxFit.CONTAIN,
+            min_scale=1.0,
+            max_scale=4.0,
+            expand=True,
+        )
+    )
 
 
 ft.run(main)
 ```
 
-Save the code as `main.py`, install the dependencies, and start it with:
-
-```bash
-flet debug macos
-```
-
-Replace `macos` with `windows`, `linux`, `ios`, or `android` when targeting another
-supported platform. For iOS and Android, specify a connected device with
-`-d <device-id>`. Web is not supported by this extension.
-
-For local images, pass a file path instead of a URL:
+The `src` property accepts an image URL or a local file path. For example:
 
 ```python
 FletImageViewer(src="assets/photo.jpg")
 ```
 
-Important options:
+## Swipeable gallery
 
-| Option | Description |
-|--------|-------------|
-| `src` | Image URL or local path for `FletImageViewer`; list of URLs or paths for `FletMultiViewer`. |
-| `viewer_id` | Required identifier for `FletMultiViewer`. |
-| `index` | Initial image index for `FletMultiViewer`, starting at `0`. |
-| `BoxFit` | How the image fits inside the viewer, such as `ft.BoxFit.CONTAIN`. |
-| `min_scale` / `max_scale` | Minimum and maximum zoom levels. |
-| `overlay` | Optional Flet control displayed over the image viewer, such as a label or action bar. |
-| `on_long_press` / `on_double_tap` | Optional Flet event handlers. |
+Use `FletMultiViewer` to display multiple images. The `index` property selects
+the image shown first, starting at `0`.
 
-### Run your app
+```python
+import flet as ft
 
-A Flet extension has two sides: its Python controls/services and the native Flutter/Dart widgets behind them.
-That native code must be compiled into a Flet client before your controls can render, and the
-prebuilt client that a plain `flet run` uses does **not** include this extension.
+from flet_image_viewer import FletMultiViewer
 
-So run your app in one of these two ways:
 
-**1. [`flet debug`](https://flet.dev/docs/cli/flet-debug)** — supported platforms: *Windows, macOS, Linux, iOS, Android*
+def main(page: ft.Page):
+    page.add(
+        FletMultiViewer(
+            src=[
+                "https://picsum.photos/id/10/900/600",
+                "https://picsum.photos/id/20/900/600",
+                "https://picsum.photos/id/30/900/600",
+            ],
+            viewer_id="photo-gallery",
+            index=0,
+            BoxFit=ft.BoxFit.CONTAIN,
+            overlay=ft.Container(
+                content=ft.Text("Swipe to view more"),
+                bgcolor=ft.Colors.with_opacity(0.75, ft.Colors.BLACK),
+                padding=10,
+            ),
+            on_long_press=lambda event: print("Image long-pressed"),
+            on_double_tap=lambda event: print("Image double-tapped"),
+            expand=True,
+        )
+    )
 
-Compiles the extension and launches your app on the supported target you pick.
 
-```bash
-flet debug macos                   # desktop: no device needed
-flet debug android -d <device-id>  # mobile: connect a device/emulator first
+ft.run(main)
 ```
 
-For iOS and Android, pass `-d <device-id>` (run `flet debug --show-devices` to list connected devices).
-Edits to your **Python** code are picked up the next time you run `flet debug`.
+## Control properties
 
-**2. [`flet build`](https://flet.dev/docs/cli/flet-build) once, then [`flet run`](https://flet.dev/docs/cli/flet-run)** — desktop only: *Windows, macOS, Linux*
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `src` | `str` / `list` | required | Image URL or local path, or a list of URLs and paths for `FletMultiViewer`. |
+| `viewer_id` | `str` | required for `FletMultiViewer` | Identifier for the multi-image viewer. |
+| `index` | `int` | `0` | Initial image index for `FletMultiViewer`. |
+| `show_close_button` | `bool` | `False` | Shows a close button on `FletImageViewer`. |
+| `BoxFit` | `ft.BoxFit \\| None` | `None` | Controls how the image fits inside the viewer. |
+| `overlay` | `ft.Control \\| None` | `None` | Flet control displayed over the image viewer. |
+| `min_scale` / `max_scale` | `float \\| None` | `None` | Minimum and maximum zoom levels. |
+| `on_long_press` | event handler | `None` | Called when the image is long-pressed. |
+| `on_double_tap` | event handler | `None` | Called when the image is double-tapped. |
 
-Build a custom client that bundles the extension **once**, then use `flet run` for a fast hot-reload loop while you edit Python:
+## Events
 
-```bash
-flet build macos  # or: flet build windows / flet build linux
-flet run          # run from the folder where build/ was created, so it reuses that client
+Register handlers directly on either viewer:
+
+```python
+def handle_double_tap(event: ft.ControlEvent):
+    print("Viewer double-tapped")
+
+
+viewer = FletImageViewer(
+    src="https://picsum.photos/900/600",
+    on_double_tap=handle_double_tap,
+)
 ```
 
-`flet run` auto-detects the client under `build/<platform>/`, so your Python edits hot-reload instantly.
-Rebuild only when the extension's **Dart** code changes.
+## Platform support
 
-### Examples
+The extension supports all Flet platforms except Web:
 
-See the [examples](examples) directory.
+| Platform | Support |
+| --- | --- |
+| Android | Supported |
+| iOS | Supported |
+| Linux | Supported |
+| macOS | Supported |
+| Windows | Supported |
+| Web | Not supported |
 
-### Documentation
+## Build and run
 
-<!--- Update the link, if your docs are elsewhere. Alternatively, you could write out all docs in this section directly. -->
+For desktop development, build the client once and then use `flet run`:
 
-Detailed documentation for this package can be found [here](https://MY_GITHUB_ACCOUNT.github.io/flet-image-viewer/).
+```bash
+flet build windows
+flet run
+```
 
-Made with ❤️ by Zaim.
+Rebuild the client when the extension's Dart code changes. Python-only changes
+can be picked up with the normal Flet development workflow after the extension
+has been built.
+
+## Build the example
+
+The example application is in
+[`examples/flet_image_viewer_example/`](examples/flet_image_viewer_example/):
+
+```bash
+cd examples/flet_image_viewer_example
+flet build windows
+flet run
+```
+
+Replace `windows` with another supported desktop or mobile target.
+
+## Documentation
+
+See the [complete API documentation](https://zaim-tech.github.io/flet-image-viewer/)
+for the generated control reference.
+
+## Development
+
+The project follows Flet's extension structure:
+
+```text
+src/flet_image_viewer/               Python controls
+src/flutter/flet_image_viewer/       Native Flutter extension
+examples/flet_image_viewer_example/  Sample Flet application
+docs/                                API documentation
+```
+
+## License
+
+See [LICENSE](LICENSE).
+
+---
+
+**Made with ❤️ by [Zaim Sheali](https://github.com/zaim-tech)**
