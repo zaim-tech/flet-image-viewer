@@ -1,0 +1,53 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+.env
+
+# Python packaging and build output
+build/
+**/build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+*.whl
+
+# Test and type-checker output
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.pytype/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# MkDocs output
+site/
+docs/_build/
+
+# Flet local state
+.flet/
+**/.flet/
+
+# Flutter and Dart generated files
+.dart_tool/
+**/.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+**/pubspec.lock
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
