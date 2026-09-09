@@ -21,7 +21,8 @@ def main(page: ft.Page):
             ),
             on_long_press=lambda event: print("Image long-pressed"),
             on_double_tap=lambda event: print("Image double-tapped"),
-            expand=True,
+            width=350,
+            height=350
         )
     )
 

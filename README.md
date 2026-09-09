@@ -11,6 +11,10 @@ The package provides `FletImageViewer` for a single image and `FletMultiViewer`
 for a swipeable gallery. Both controls support pinch-to-zoom, configurable
 image fitting, overlays, and long-press or double-tap events.
 
+## Demo
+
+Want to see it in action? Watch the [sample demo video](examples/sample.mp4).
+
 ## Installation
 
 Install the published package from PyPI:
