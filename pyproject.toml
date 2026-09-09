@@ -1,6 +1,6 @@
 [project]
 name = "flet-image-viewer"
-version = "0.1.0"
+version = "0.1.1"
 description = "A zoomable image viewer and swipeable gallery control for Flet"
 readme = "README.md"
 requires-python = ">=3.10"

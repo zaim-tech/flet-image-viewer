@@ -1,6 +1,6 @@
 name: flet_image_viewer
 description: Flet FletImageViewer control
-version: 0.1.0
+version: 0.1.1
 publish_to: none
 
 environment:
