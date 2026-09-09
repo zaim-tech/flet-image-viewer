@@ -67,7 +67,9 @@ ft.run(main)
 The `src` property accepts an image URL or a local file path. For example:
 
 ```python
-FletImageViewer(src="assets/photo.jpg")
+base = os.path.dirname(os.path.abspath(__file__))
+image = os.path.join(base, "assets/photo.jpg")
+FletImageViewer(src=image)
 ```
 
 ## Swipeable gallery
