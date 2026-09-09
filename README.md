@@ -60,6 +60,11 @@ def main(page: ft.Page):
     BoxFit=ft.BoxFit.CONTAIN,
     min_scale=1.0,
     max_scale=4.0,
+    overlay=ft.Container(
+      content=ft.Text("Photo preview"),
+      bgcolor=ft.Colors.with_opacity(0.75, ft.Colors.BLACK),
+      padding=10,
+    ),
     on_double_tap=lambda event: print("Image double-tapped"),
   )
 
@@ -111,6 +116,7 @@ Important options:
 | `index` | Initial image index for `FletMultiViewer`, starting at `0`. |
 | `BoxFit` | How the image fits inside the viewer, such as `ft.BoxFit.CONTAIN`. |
 | `min_scale` / `max_scale` | Minimum and maximum zoom levels. |
+| `overlay` | Optional Flet control displayed over the image viewer, such as a label or action bar. |
 | `on_long_press` / `on_double_tap` | Optional Flet event handlers. |
 
 ### Run your app
