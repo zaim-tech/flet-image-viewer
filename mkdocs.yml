@@ -1,7 +1,85 @@
 site_name: FletImageViewer
+site_url: https://zaim-tech.github.io/flet-image-viewer/
+repo_url: https://github.com/zaim-tech/flet-image-viewer
+repo_name: zaim-tech/flet-image-viewer
+site_description: Zoomable image viewer and swipeable gallery controls for Flet
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+  - Controls:
+      - FletImageViewer:
+          - Overview: controls/fletimageviewer/index.md
+          - Properties: controls/fletimageviewer/properties.md
+          - Events and overlays: controls/fletimageviewer/events.md
+      - FletMultiViewer:
+          - Overview: controls/fletmultiviewer/index.md
+  - Guides:
+      - Examples: guides/examples.md
+      - Building and running: guides/building.md
+  - Reference:
+      - Platform notes: reference/platform-notes.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Resources: reference/resources.md
 
 theme:
   name: "material"
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
 
 plugins:
-  - mkdocstrings
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
