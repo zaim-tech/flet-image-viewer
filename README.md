@@ -13,7 +13,7 @@ image fitting, overlays, and long-press or double-tap events.
 
 ## Demo
 
-Want to see it in action? Watch the [sample demo video](examples/sample.mp4).
+Want to see it in action? Watch the [sample demo video](https://www.image2url.com/r2/default/videos/1788985175034-378cd23e-ec61-469e-8d07-5ce4f3e569aa.mp4).
 
 ## Installation
 

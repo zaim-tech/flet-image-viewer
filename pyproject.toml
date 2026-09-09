@@ -20,7 +20,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/zaim-tech/flet-image-viewer"
-Documentation = "https://github.com/zaim-tech/flet-image-viewer"
+Documentation = "https://zaim-tech.github.io/flet-image-viewer/"
 Repository = "https://github.com/zaim-tech/flet-image-viewer"
 Issues = "https://github.com/zaim-tech/flet-image-viewer/issues"
 

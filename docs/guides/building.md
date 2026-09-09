@@ -16,3 +16,8 @@ Replace `windows` with another supported target such as `macos`, `linux`,
 
 Rebuild after changing the extension's Dart code. Python-only changes can be
 run again without rebuilding the native extension.
+
+## Demo video
+
+Watch the [sample demo video](https://www.image2url.com/r2/default/videos/1788985175034-378cd23e-ec61-469e-8d07-5ce4f3e569aa.mp4)
+to see the image viewer and gallery in action.
